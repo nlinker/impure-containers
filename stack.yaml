@@ -1,15 +1,15 @@
-resolver: lts-14.25
+resolver: lts-20.11
 
 packages:
 - '.'
 
 extra-deps:
-- git: https://github.com/ucsd-progsys/liquidhaskell
-  commit: a41325c2aa5697a6bec9b6e8c39aabf0fddc3970
-- git: https://github.com/ucsd-progsys/liquid-fixpoint
-  commit: 752f9e5a572e175eda4c7c10d7a355456245c3ed
-- git: https://github.com/ucsd-progsys/prover
-  commit: f6a47df5a079f4b9586829203015cce6f82cebbb
+# - git: https://github.com/ucsd-progsys/liquidhaskell
+#   commit: a41325c2aa5697a6bec9b6e8c39aabf0fddc3970
+# - git: https://github.com/ucsd-progsys/liquid-fixpoint
+#   commit: 752f9e5a572e175eda4c7c10d7a355456245c3ed
+# - git: https://github.com/ucsd-progsys/prover
+#   commit: f6a47df5a079f4b9586829203015cce6f82cebbb
 
 flags:
   vector:

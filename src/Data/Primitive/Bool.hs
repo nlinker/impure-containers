@@ -9,6 +9,7 @@ import           Data.Primitive.Types
 import qualified Data.Primitive.Types as P
 import           Data.Word
 import           GHC.Prim
+import           GHC.Exts
 import           GHC.Types            (Int (..))
 
 {-@ data BoolByte = BoolByte { getBoolByte :: Bool } @-}
@@ -40,12 +41,12 @@ fromBool (BoolByte b) = case b of
 instance Prim BoolByte where
   sizeOf# _ = 1#
   alignment# _ = 1#
-  indexByteArray# arr# i# = toBool# (indexWord8Array# arr# i#)
+  indexByteArray# arr# i# = toBool# (word8ToWord# (indexWord8Array# arr# i#))
   readByteArray# arr# i# s# =
     case readWord8Array# arr# i# s# of
-      { (# s1#, x# #) -> (# s1#, toBool# x# #) }
+      { (# s1#, x# #) -> (# s1#, toBool# (word8ToWord# x#) #) }
   writeByteArray# arr# i# b s# =
-    writeWord8Array# arr# i# (fromBool# b) s#
+    writeWord8Array# arr# i# (wordToWord8# (fromBool# b)) s#
   setByteArray# arr# i# n# b s# = P.setByteArray# arr# i# n# (fromBool b) s#
   indexOffAddr# addr# i# = toBool (indexOffAddr# addr# i#)
   readOffAddr#  addr# i# s# =

@@ -53,7 +53,7 @@ type Elem = Word16
 
 ------------------------------------------------------------------------------
 primWordToElem :: Word# -> Elem
-primWordToElem = W16#
+primWordToElem w = W16# (wordToWord16# w)
 
 
 ------------------------------------------------------------------------------
@@ -64,8 +64,7 @@ elemToInt e = let !i# = elemToInt# e
 
 ------------------------------------------------------------------------------
 elemToInt# :: Elem -> Int#
-elemToInt# (W16# w#) = word2Int# w#
-
+elemToInt# (W16# w#) = word2Int# (word16ToWord# w#)
 
 ------------------------------------------------------------------------------
 elemMask :: Int
